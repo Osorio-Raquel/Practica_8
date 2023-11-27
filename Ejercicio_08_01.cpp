@@ -21,16 +21,32 @@ void encriptar(){
     string dato;
     int large;
     cout << "Ingrese el dato a encriptar: ";
+    cin.ignore();
     getline(cin,dato);
     large = dato.length();
     char data[large];
     for (int i = 0; i<large; i++){
         data[i] = dato[i] + 3;
     }
+    cout << "el dato encriptado guardado es: " << data;
     ofstream archivoEscritura;
-    archivoEscritura.open(NOMBRE_ARCHIVO,ios::app);
+    archivoEscritura.open(NOMBRE_ARCHIVO);
     archivoEscritura << data;
     archivoEscritura.close();
+}
+void desencriptar(){
+    string dato;
+    ifstream archivoEscritura;
+    archivoEscritura.open(NOMBRE_ARCHIVO);
+    getline(archivoEscritura,dato);
+    int large;
+    large = dato.length();
+    char data[large];
+    for (int i = 0; i<large; i++){
+        data[i] = dato[i] - 3;
+    }
+    archivoEscritura.close();
+    cout << data;
 }
 
 int main() {
@@ -50,7 +66,7 @@ int main() {
                 break;
 
             case 2:
-                in();
+                desencriptar();
                 break;
 
             case 3:
@@ -62,11 +78,7 @@ int main() {
                 break;
         }
 
-    } while (o != 4);
+    } while (o != 3);
 
     return 0;
 }
-
-
-
-
